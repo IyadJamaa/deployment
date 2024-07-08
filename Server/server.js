@@ -23,7 +23,13 @@ mongoose.connect(process.env.MONGO_URL).then(() => {
 const app = express();
 const port = 5001;
 //middlewares
-app.use(cors());
+app.use(cors(
+    {
+        origin: ["deployed-vercel-frontend-app","localhost:3000"],
+        methods: ["POST", "GET"],
+        credentials: true
+    }
+));
 app.use(express.json());
 
 app.use(bodyParser.json());
